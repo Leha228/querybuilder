@@ -1,0 +1,12 @@
+{
+  "autoload": {
+    "psr-4": {
+      "App\\": "App/",
+      "App\\CRUD\\": "App/CRUD/",
+      "App\\Operators\\": "App/Operators/"
+    }
+  },
+  "require": {
+    "ext-pdo": "*"
+  }
+}
