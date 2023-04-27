@@ -10,14 +10,10 @@ use App\CRUD\Update;
 use App\Operators\From;
 use App\Operators\OrderBy;
 use App\Operators\Where;
-use PDO;
 
 #[AllowDynamicProperties]
 class QueryBuilder extends Builder
 {
-    private array $fields;
-    private array $from;
-
     public function __construct(array $configDB)
     {
         parent::__construct($configDB);
@@ -35,7 +31,7 @@ class QueryBuilder extends Builder
     }
 
     public function select(string ...$fields): self {
-        $this->query .= Select::write($fields);
+        $this->query = Select::write($fields);
         return $this;
     }
 
@@ -63,16 +59,4 @@ class QueryBuilder extends Builder
         $this->query .= OrderBy::write($fields);
         return $this;
     }
-
-    public function execute(): string
-    {
-        /*$query = $this->query;
-        $this->query = "";
-        return $query;*/
-
-        $stmt = $this->connection->query($this->query);
-        $this->query = "";
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
 }

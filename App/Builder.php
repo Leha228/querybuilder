@@ -38,4 +38,17 @@ class Builder
             echo "Connection failed: " . $e->getMessage();
         }
     }
+
+    public function execute(): string
+    {
+
+        // РАССКОМЕНТИРОВАТЬ ДЛЯ ПРОВЕРКИ В БД
+
+        /*
+         * $stmt = $this->connection->query($this->query);
+         * return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        */
+
+        return $this->query;
+    }
 }

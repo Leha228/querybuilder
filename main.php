@@ -14,35 +14,44 @@
 
     $db = new QueryBuilder($configDB);
 
+    /*
+     *
+     * Тестовые данные для проверки. Выводит просто строку SQL
+     *
+     */
+
     $querySelect = $db->select("*")
         ->from("autoshop.users")
         ->where("name = alex")
-        ->limit(1)
-        ->execute();
+        ->limit(1);
+
+    print_r("<br><br>" . $querySelect->execute() . "<br><br>");
 
     $queryInsert = $db->insert(
         "autoshop.users",
         ["name", "age", "mail"],
         ["'tom'", 25, "'tom@mail.ru'"]
-    )->execute();
+    );
+
+    print_r($queryInsert->execute() . "<br><br>");
 
     $queryUpdate = $db->update(
         "autoshop.users",
         "name = Alex")
-        ->where("name = alex")
-        ->execute();
+        ->where("name = alex");
+
+    print_r($queryUpdate->execute() . "<br><br>");
 
     $queryDelete = $db->delete("autoshop.users")
-        ->where("name = alex", "age = 12")
-        ->execute();
+        ->where("name = alex", "age = 12");
+
+    print_r($queryDelete->execute() . "<br><br>");
 
     $queryOrderBy = $db->select("*")
         ->from("autoshop.users")
-        ->order_by("age DESC")
-        ->execute();
+        ->order_by("age DESC");
 
-    print_r($queryOrderBy);
-
+    print_r($queryOrderBy->execute() . "<br><br>");
 
 
 
